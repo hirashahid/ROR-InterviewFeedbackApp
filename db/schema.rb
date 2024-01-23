@@ -10,7 +10,35 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.1].define(version: 2024_01_22_094744) do
+ActiveRecord::Schema[7.1].define(version: 2024_01_22_133055) do
+  create_table "interviews", force: :cascade do |t|
+    t.string "company"
+    t.string "point_of_contact"
+    t.date "date"
+    t.date "follow_up_date"
+    t.string "feedback"
+    t.string "status"
+    t.string "mode"
+    t.integer "created_by_id", null: false
+    t.integer "profile_id", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["created_by_id"], name: "index_interviews_on_created_by_id"
+    t.index ["profile_id"], name: "index_interviews_on_profile_id"
+  end
+
+  create_table "profiles", force: :cascade do |t|
+    t.string "name"
+    t.string "address"
+    t.string "timezone"
+    t.string "email"
+    t.binary "resume"
+    t.integer "created_by_id", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["created_by_id"], name: "index_profiles_on_created_by_id"
+  end
+
   create_table "users", force: :cascade do |t|
     t.string "email", default: "", null: false
     t.string "encrypted_password", default: "", null: false
@@ -19,8 +47,15 @@ ActiveRecord::Schema[7.1].define(version: 2024_01_22_094744) do
     t.datetime "remember_created_at"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.string "name"
+    t.integer "empId"
+    t.integer "phone"
+    t.integer "user_type"
     t.index ["email"], name: "index_users_on_email", unique: true
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
   end
 
+  add_foreign_key "interviews", "profiles", column: "profile_id"
+  add_foreign_key "interviews", "users", column: "created_by_id"
+  add_foreign_key "profiles", "users", column: "created_by_id"
 end

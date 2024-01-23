@@ -1,0 +1,74 @@
+<%= form_with model: interview do |form| %>
+    <div class="row">
+      <div class="col-lg-4">
+        <div class="form-group">
+          <%= form.label :profile_id, class: 'mb-2' %>
+          <%= form.collection_select :profile_id, Profile.all, :id, :name,
+          { include_blank: 'Select a Profile' },
+          { class: 'form-control form-control-lg rounded-0' } %>
+          <% @interview.errors.full_messages_for(:profile_id).each do |message| %>
+          <p class="text-danger"><%= message %></p>
+          <% end %>
+        </div>
+      </div>
+      <div class="col-lg-4">
+
+        <div class="form-group">
+          <%= form.label :company, class: 'mb-2' %>
+          <%= form.text_field :company, class: 'form-control form-control-lg rounded-0'  %>
+        </div>
+      </div>
+      <div class="col-lg-4">
+        <div class="form-group">
+          <%= form.label :point_of_contact, class: 'mb-2' %>
+          <%= form.text_field :point_of_contact, class: 'form-control form-control-lg rounded-0'  %>
+          <% @interview.errors.full_messages_for(:point_of_contact).each do |message| %>
+          <p class="text-danger"><%= message %></p>
+          <% end %>
+        </div>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-lg-4">
+        <div class="form-group">
+          <%= form.label :feedback, class: 'mb-2 mt-4' %>
+          <%= form.text_field :feedback, class: 'form-control form-control-lg rounded-0'  %>
+        </div>
+      </div>
+      <div class="col-lg-6">
+        <div class="form-group">
+          <%= form.label :status, class: 'mb-2 mt-4' %>
+          <%= form.text_field :status, class: 'form-control form-control-lg rounded-0'  %>
+        </div>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-lg-4">
+        <div class="form-group">
+          <%= form.label :mode, class: 'mb-2 mt-4' %>
+          <%= form.text_field :mode, class: 'form-control form-control-lg rounded-0'  %>
+        </div>
+      </div>
+      <div class="col-lg-4">
+        <div class="form-group">
+          <%= form.label :date, class: 'mb-2 mt-4' %>
+          <%= form.text_field :date,
+          class: 'form-control form-control-lg rounded-0' %>
+        </div>
+      </div>
+      <div class="col-lg-4">
+        <div class="form-group">
+          <%= form.label :follow_up_date, class: 'mb-2 mt-4' %>
+          <%= form.text_field :follow_up_date,
+          class: 'form-control form-control-lg rounded-0' %>        
+        </div>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-lg-12 mt-4" >
+      <%= form.submit class: 'btn btn-primary btn-lg rounded-0' %>
+      <%= link_to "Back", interviews_path, class: "btn 
+      btn-outline-primary btn-lg rounded-0"%>
+      </div>
+    </div>
+  <% end %> 
