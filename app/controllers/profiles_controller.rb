@@ -1,5 +1,5 @@
 class ProfilesController < ApplicationController
-  before_action :set_profile, only: [:edit, :update, :show, :destroy]
+  before_action :set_profile, only: %i[edit update show destroy]
   def index
     @profiles = Profile.all
   end
@@ -39,7 +39,6 @@ class ProfilesController < ApplicationController
   end
 
   def destroy
-    byebug
     return unless @profile.destroy
 
     redirect_to profiles_path, notice: 'Profile has been deleted.'

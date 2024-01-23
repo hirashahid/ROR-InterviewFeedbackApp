@@ -13,6 +13,9 @@
         <div class="form-group">
           <%= form.label :email, class: 'mb-2' %>
           <%= form.text_field :email, class: 'form-control form-control-lg rounded-0'  %>
+          <% @profile.errors.full_messages_for(:email).each do |message| %>
+          <p class="text-danger"><%= message %></p>
+          <% end %>
         </div>
       </div>
     </div>
@@ -20,7 +23,9 @@
       <div class="col-lg-6">
         <div class="form-group">
           <%= form.label :timezone, class: 'mb-2' %>
-          <%= form.text_field :timezone, class: 'form-control form-control-lg rounded-0'  %>
+           <%= form.select :timezone, ['PST', 'CET', 'GMT', 'AEST', 'IST', 'CST', 'EET'],
+          { include_blank: 'Select Timezone' },
+          {class: 'form-control form-control-lg rounded-0'}  %>
           <% @profile.errors.full_messages_for(:timezone).each do |message| %>
           <p class="text-danger"><%= message %></p>
           <% end %>
@@ -30,6 +35,9 @@
         <div class="form-group">
           <%= form.label :resume, class: 'mb-2' %>
           <%= form.file_field :resume %>
+          <% @profile.errors.full_messages_for(:resume).each do |message| %>
+          <p class="text-danger"><%= message %></p>
+          <% end %>
         </div>
       </div>
     </div>
@@ -38,6 +46,9 @@
         <div class="form-group">
           <%= form.label :address, class: 'mb-2' %>
           <%= form.text_field :address, class: 'form-control form-control-lg rounded-0'  %>
+          <% @profile.errors.full_messages_for(:address).each do |message| %>
+          <p class="text-danger"><%= message %></p>
+          <% end %>
         </div>
       </div>
     </div>

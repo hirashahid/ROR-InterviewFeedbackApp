@@ -1,5 +1,4 @@
 <div class="col-lg-12">
-  <%= flash[:notice] %>
   <div class="card rounded-0 mt-5 mb-5">
     <div class="card-body">
       <h2 class="text-center">Listing Profiles</h2>
@@ -24,7 +23,7 @@
           <td><%= profile.email%></td>
           <td><%= profile.address%></td>
           <td><%= profile.timezone%></td>
-          <td><%= profile.resume%></td>
+          <td><%= link_to 'Download Resume', rails_blob_url(profile.resume, disposition: 'attachment') if profile.resume.attached? %></td>
           <td><%= profile.created_by.name%></td>
 
           <td>
@@ -34,7 +33,7 @@
               </button>
               <ul class="dropdown-menu">
                 <li><%= link_to "Edit", edit_profile_path(profile), class: "dropdown-item" %></li>
-                <li><%= link_to "Delete", profile_path(profile), class: "dropdown-item", method: :delete, data: { confirm: 'Are you sure'}, remote: true %></li>
+                <li><%= link_to "Delete", profile_path(profile), class: "dropdown-item", method: :delete, data: { confirm: 'Are you sure'} %></li>
               </ul>
             </div>
           </td>
