@@ -1,0 +1,13 @@
+<div class="col-lg-12">
+  <div class="card rounded-0 mt-5 mb-5">
+    <div class="card-body">
+      <h2 class="text-center">Interview Details</h2>
+      <div class="row mt-5">
+          <p class="lead"><strong>Profile:</strong><%= @interview.profile %></p>
+          <p class="lead"><strong>Company:</strong><%= @interview.company %></p>
+          <p class="lead"><strong>Point of Contact:</strong><%= @interview.point_of_contact %></p>
+      </div>
+      <%= link_to 'Back', interviews_path, class: "btn btn-primary mt-4" %>
+    </div>
+  </div>
+</div>

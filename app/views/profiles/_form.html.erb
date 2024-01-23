@@ -1,0 +1,62 @@
+<%= form_with model: profile do |form| %>
+    <div class="row">
+      <div class="col-lg-6">
+        <div class="form-group">
+          <%= form.label :name, class: 'mb-2' %>
+          <%= form.text_field :name, class: 'form-control form-control-lg rounded-0'  %>
+          <% @profile.errors.full_messages_for(:name).each do |message| %>
+          <p class="text-danger"><%= message %></p>
+          <% end %>
+        </div>
+      </div>
+      <div class="col-lg-6">
+        <div class="form-group">
+          <%= form.label :email, class: 'mb-2' %>
+          <%= form.text_field :email, class: 'form-control form-control-lg rounded-0'  %>
+          <% @profile.errors.full_messages_for(:email).each do |message| %>
+          <p class="text-danger"><%= message %></p>
+          <% end %>
+        </div>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-lg-6">
+        <div class="form-group">
+          <%= form.label :timezone, class: 'mb-2' %>
+           <%= form.select :timezone, ['PST', 'CET', 'GMT', 'AEST', 'IST', 'CST', 'EET'],
+          { include_blank: 'Select Timezone' },
+          {class: 'form-control form-control-lg rounded-0'}  %>
+          <% @profile.errors.full_messages_for(:timezone).each do |message| %>
+          <p class="text-danger"><%= message %></p>
+          <% end %>
+        </div>
+      </div>
+      <div class="col-lg-6 mt-5">
+        <div class="form-group">
+          <%= form.label :resume, class: 'mb-2' %>
+          <%= form.file_field :resume %>
+          <% @profile.errors.full_messages_for(:resume).each do |message| %>
+          <p class="text-danger"><%= message %></p>
+          <% end %>
+        </div>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-lg-12">
+        <div class="form-group">
+          <%= form.label :address, class: 'mb-2' %>
+          <%= form.text_field :address, class: 'form-control form-control-lg rounded-0'  %>
+          <% @profile.errors.full_messages_for(:address).each do |message| %>
+          <p class="text-danger"><%= message %></p>
+          <% end %>
+        </div>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-lg-12 mt-4" >
+      <%= form.submit class: 'btn btn-primary btn-lg rounded-0' %>
+      <%= link_to "Back", profiles_path, class: "btn 
+      btn-outline-primary btn-lg rounded-0"%>
+      </div>
+    </div>
+  <% end %> 

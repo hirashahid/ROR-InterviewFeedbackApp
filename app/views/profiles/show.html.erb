@@ -1,0 +1,15 @@
+<div class="col-lg-12">
+  <div class="card rounded-0 mt-5 mb-5">
+    <div class="card-body">
+      <h2 class="text-center">Profile Details</h2>
+      <div class="row mt-5">
+          <p class="lead"><strong>Name:</strong><%= @profile.name %></p>
+          <p class="lead"><strong>Address:</strong><%= @profile.address %></p>
+          <p class="lead"><strong>Timezone:</strong><%= @profile.timezone %></p>
+          <p class="lead"><strong>Email:</strong><%= @profile.email %></p>
+          <p class="lead"><strong>Resume:</strong><%= @profile.resume %></p>
+      </div>
+      <%= link_to 'Back', profiles_path, class: "btn btn-primary mt-4" %>
+    </div>
+  </div>
+</div>

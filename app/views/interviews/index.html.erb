@@ -1,0 +1,53 @@
+<div class="col-lg-12">
+  <div class="card rounded-0 mt-5 mb-5">
+    <div class="card-body">
+      <h2 class="text-center">Listing Interview Feedback</h2>
+    </div>
+  </div>
+  <%= link_to "Add New Interview Feedback", new_interview_path, class: "btn btn-primary btn-lg mb-4 rounded-0" %>
+    <table class="table table-bordered">
+      <thead>
+        <tr>
+          <th>Profile</th>
+          <th>Company</th>
+          <th>Point of Contact</th>
+          <th>Feedback</th>
+          <th>Status</th>
+          <th>Mode</th>
+          <th>Date</th>
+          <th>Follow up date</th>
+          <th>Created By</th>
+        </tr>
+      </thead>
+      <tbody>
+        <% @interviews.each do |interview| %>
+        <tr>
+          <td><%= interview.profile.name %> </td>
+          <td><%= interview.company%></td>
+          <td><%= interview.point_of_contact%></td>
+          <td><%= interview.feedback%></td>
+          <td><%= interview.status%></td>
+          <td><%= interview.mode %></td>
+          <td><%= interview.date %></td>
+          <td><%= interview.follow_up_date %></td>
+          <td><%= interview.created_by.name %></td>
+          <td>
+            <div class="dropdown">
+              <button class="btn btn-primary dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false">
+                Actions
+              </button>
+              <ul class="dropdown-menu">
+                <li><%= link_to "Edit", edit_interview_path(interview), class: "dropdown-item" %></li>
+                <li><%= link_to "Delete", interview_path(interview), class: "dropdown-item", method: :delete, data: { confirm: 'Are you sure'} %></li>
+              </ul>
+            </div>
+          </td>
+        </tr>
+        <% end %>
+      </tbody>
+    </table>
+</div>
+
+
+
+
