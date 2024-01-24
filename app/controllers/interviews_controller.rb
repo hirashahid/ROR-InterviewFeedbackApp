@@ -20,14 +20,6 @@ class InterviewsController < ApplicationController
     end
   end
 
-  # def create
-  #   @contract = interview::Createinterview.run(params[:interview]) do |contract|
-  #     return redirect_to(contract.model) # Success.
-  #   end
-
-  #   render :new # Failure. Re-render form.
-  # end
-
   def edit; end
 
   def update
@@ -39,9 +31,11 @@ class InterviewsController < ApplicationController
   end
 
   def destroy
-    return unless @interview.destroy
-
-    redirect_to interviews_path, notice: 'Interview has been deleted.'
+    if @interview.destroy
+      redirect_to interviews_path, notice: 'Interview Feedback has been deleted.'
+    else
+      redirect_to interviews_path, alert: 'Failed to delete Interview Feeback.'
+    end
   end
 
   private

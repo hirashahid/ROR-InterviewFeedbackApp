@@ -11,6 +11,7 @@ class ProfilesController < ApplicationController
   end
 
   def create
+    # tap
     @profile = Profile.new(profile_params)
     @profile.created_by = current_user
     if @profile.save
@@ -19,14 +20,6 @@ class ProfilesController < ApplicationController
       render :new
     end
   end
-
-  # def create
-  #   @contract = Profile::CreateProfile.run(params[:profile]) do |contract|
-  #     return redirect_to(contract.model) # Success.
-  #   end
-
-  #   render :new # Failure. Re-render form.
-  # end
 
   def edit; end
 
@@ -39,15 +32,17 @@ class ProfilesController < ApplicationController
   end
 
   def destroy
-    return unless @profile.destroy
-
-    redirect_to profiles_path, notice: 'Profile has been deleted.'
+    if @profile.destroy
+      redirect_to profiles_path, notice: 'Profile has been deleted.'
+    else
+      redirect_to profiles_path, alert: 'Failed to delete profile.'
+    end
   end
 
   private
 
   def profile_params
-    params.require(:profile).permit(:name, :email, :address, :timezone, :resume, :created_by)
+    params.require(:profile).permit(:name, :email, :address, :timezone, :resume)
   end
 
   def set_profile
